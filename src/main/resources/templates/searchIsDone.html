@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form submit for user</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        .titles {
+            color: cornflowerblue
+        }
+
+        .mailForm {
+            align-items: center
+        }
+
+        .forms {
+            opacity: 0.7
+        }
+    </style>
+
+</head>
+
+<body>
+<h1 class="titles">Search results</h1>
+<form th:action="@{/user/searchIsDone}" th:object="${users}" method="get">
+    <table>
+        <caption style="color: cornflowerblue">Information about users</caption>
+        <tbody style="color: cornflowerblue">
+        <tr>
+            <td><h4>Surname</h4></td>
+            <td><h4>Name</h4></td>
+            <td><h4>Patronymic</h4></td>
+            <td><h4>Age</h4></td>
+            <td><h4>Salary</h4></td>
+            <td><h4>Email</h4></td>
+            <td><h4>Work address:</h4></td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getSurname()}"></td>
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getPatronymic()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getSalary()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getWorkAddress()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<form th:action="@{/user/searchIsDone}" th:object="${userAgent}" method="get">
+    <p style="color: cornflowerblue" th:text="${userAgent.getBrowserInfo()}"/>
+    <p style="color: cornflowerblue" th:text="${userAgent.getDate()}"/>
+</form>
+
+<form th:action="@{/user/search/sendMail}" method="post" enctype="multipart/form-data">
+    <div style="color: cornflowerblue">
+        <div style="color: cornflowerblue" class="mailForm"> Send an email:<br/>
+            <table>
+                <tdbody>
+                    <tr>
+                        <td>User email</td>
+                        <td><input type="text" name="to"/></td>
+                    </tr>
+                    <tr>
+                        <td>Message text:</td>
+                        <td><input type="text" name="text"></td>
+                    </tr>
+                    <tr>
+                        <td>letter subject:</td>
+                        <td><input type="text" name="subject"></td>
+                    </tr>
+                </tdbody>
+            </table>
+            <tr>
+                <input type="submit" name="Send" value="Send" th:action="@{/user/search/sendMail}">
+            </tr>
+        </div>
+    </div>
+    <br>
+    <a th:size="25" href="/user/search" style="color: gray">Find user</a>
+</form>
+</body>
+</html>
+

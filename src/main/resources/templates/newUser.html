@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New user</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        .forms{ opacity: 0.6}
+        .titles{color: cornflowerblue}
+        .surname{color: dodgerblue}
+        .name{color: dodgerblue}
+        .patronymic{color: dodgerblue}
+        .age{color: dodgerblue}
+        .salary{color: dodgerblue}
+        .email{color: dodgerblue}
+        .work{color: dodgerblue}
+    </style>
+</head>
+<body>
+<h1 class="titles">Registration</h1>
+<form th:action="@{/user}" th:object="${newUser}" method="post" class="forms">
+    <table>
+        <tr>
+            <td class="surname">Surname:</td>
+            <td><input type="text"
+                       placeholder="Shvetc"
+                       th:field="*{surname}"
+                       maxlength="50"
+                       required pattern="^[А-Я][а-я-]+" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="name">Name:</td>
+            <td><input type="text"
+                       placeholder="Dmitrii"
+                       th:field="*{name}"
+                       maxlength="50"
+                       required pattern="^[А-Я][а-я-]+" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class=patronymic>Patronymic:</td>
+            <td><input type="text"
+                       placeholder="Sergeevich"
+                       th:field="*{patronymic}"
+                       maxlength="50"
+                       required pattern="^[А-Я][а-я-]+"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="age">Age:</td>
+            <td><input type="text"
+                       placeholder="22"
+                       th:field="*{age}"
+                       min="18" max="90"
+                       required pattern="[1-9]{2}" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="salary">Salary:</td>
+            <td><input type="text"
+                       th:field="*{salary}"
+                       required pattern="[0-9.]+" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="email">Email:</td>
+            <td><input type="text"
+                       placeholder="shvetc@mail.ru"
+                       th:field="*{email}"
+                       required pattern="[A-Za-z0-9]{5,200}@[a-z0-9]{3,20}.[a-z]{2,3}" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="work">Work address:</td>
+            <td><input type="text"
+                       placeholder="г.Нижний Новгород, р-он.Советский пр-т Гагарин д.24"
+                       th:field="*{workAddress}">
+            </td>
+        </tr>
+
+        <td class="submit" th:action="@{/user}"><input type="submit" value="Send"/></td>
+        <td class="reset" th:action="@{/user}"><input type="reset" value="Reset"/></td>
+    </table>
+</form>
+<form th:action="@{/user/upload}" method="post" enctype="multipart/form-data">
+    <div>
+        <input type="file" name="file" value="Choose file"><br />
+        <input type="submit" name="Upload" value="DownLoad">
+        <br><br>
+        <a th:size="25" href="/user/search" style="color: gray">Find user</a>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search user</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        .forms{ opacity: 0.6}
+        .titles{color: cornflowerblue}
+        .surname{color: cornflowerblue}
+        .name{color: cornflowerblue}
+    </style>
+
+</head>
+<body>
+<h1 class="titles">User search</h1>
+<form action="#" th:action="@{/user/search}" th:object="${searchUser}" method="post" class="forms">
+
+    <table>
+        <tr>
+            <td class="surname">Surname:</td>
+            <td><input type="text"
+                       th:field="*{surname}"
+                       placeholder="Shvetc"
+                       maxlength="50"
+                       required pattern="^[А-Я][а-я-]+" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="name">Name:</td>
+            <td><input type="text"
+                       th:field="*{name}"
+                       placeholder="Dmitrii"
+                       maxlength="50"
+                       required pattern="^[А-Я][а-я-]+" autofocus/>
+            </td>
+        </tr>
+
+            <td class="submit"><input type="submit" value="Find"/></td>
+
+    </table>
+    <br>
+    <a th:size="25" href="/user" style="color: gray">Adding a new user</a>
+</form>
+</body>
+</html>

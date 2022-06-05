@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .forms{ opacity: 0.6 ; align-items: baseline}
+        .form1{ width: 300px ; height: 80px ; opacity: 0.6 ; align-content: baseline}
+    </style>
+</head>
+<body>
+<form th:align="center" class="form1">
+    <h1 style="color: cornflowerblue;">User added</h1>
+</form>
+<br>
+<form class="forms">
+    <table>
+        <caption style="color: cornflowerblue">Information about users</caption>
+        <tbody style="color: cornflowerblue">
+        <tr>
+            <td><h4>id</h4></td>
+            <td><h4>Surname</h4></td>
+            <td><h4>Name</h4></td>
+            <td><h4>Patronymic</h4></td>
+            <td><h4>Age</h4></td>
+            <td><h4>Salary</h4></td>
+            <td><h4>Email</h4></td>
+            <td><h4>WorkAddress</h4></td>
+        </tr>
+        <tr>
+            <td>
+                <p th:text="${addUser.getId()}"/>
+            </td>
+            <td>
+                <p th:text="${addUser.getSurname()}"/>
+            </td>
+            <td>
+                <p th:text="${addUser.getName()}"/>
+            </td>
+            <td>
+                <p th:text="${addUser.getPatronymic()}"/>
+            </td>
+            <td>
+                <p th:text="${addUser.getAge()}"/>
+            </td>
+            <td>
+                <p th:text="${addUser.getSalary()}"/>
+            </td>
+            <td>
+                <p th:text="${addUser.getEmail()}"/>
+            </td>
+            <td>
+                <p th:text="${addUser.getWorkAddress()}"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<form class="forms" action="/user">
+    <input type="submit" value="Back" name="Back"/>
+</form>
+</body>
+</html>
